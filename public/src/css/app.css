@@ -2,3 +2,16 @@
     color: grey;
 }
 
+
+.container img {
+  display: inline-block;
+  width: 150; height: 150;
+  max-width: 150; max-height: 150;
+  vertical-align: middle;
+}
+.container:after {
+  display: inline-block;
+  height: 100%; width: 0;
+  vertical-align: middle;
+  content: "";
+}
