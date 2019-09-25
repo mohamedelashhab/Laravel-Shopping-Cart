@@ -20,10 +20,13 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> User Account<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li><a href="#">Separated link</a></li>
+                    @if (Auth::check())
+                        <li><a href="{{route('user.logout')}}">logout</a></li>
+                    @else
+                        <li><a href="{{route('user.login')}}">login</a></li>
+                        <li><a href="{{route('user.register')}}">register</a></li>
+                    @endif
+ 
                 </ul>
             </li>
         </ul>
