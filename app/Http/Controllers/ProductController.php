@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Cart;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,5 +14,13 @@ class ProductController extends Controller
         return view('shop.index', [
             'products' => $products
         ]);
+    }
+
+    public function addToCart(Request $request, Product $product)
+    {
+        $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null ;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+        return redirect()->route('product.index');
     }
 }

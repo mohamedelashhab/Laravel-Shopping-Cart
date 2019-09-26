@@ -6,7 +6,18 @@
 
 @section('content')
 
-
+@section('style')
+    <style>
+    .thumbnail {
+        position: relative;
+        padding: 0px;
+        margin-bottom: 20px;
+    }
+    .bt{
+       
+    }
+    </style>
+@endsection
 
 
 <div class="row">
@@ -21,7 +32,11 @@
                     </p>
                     <p>
                         <strong class="price">{{$product->price}}$</strong>
-                        <a href="#" class="btn btn-success pull-right">Add to Cart</a>
+                        <form action="{{route('cart.add', $product)}}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-success pull-right bt">Add to Cart</button>
+                        </form>
+                       
                     </p>
                 </div>
             </div>
