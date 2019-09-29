@@ -10,3 +10,5 @@ Route::get('/register', 'UserController@getRegister')->name('user.register-form'
 Route::post('/register', 'UserController@register')->name('user.register');
 Route::get('/logout', 'UserController@logout')->name('user.logout');
 Route::post('/add_to_cart/{product}', 'ProductController@addToCart')->name('cart.add');
+Route::get('/cart-detail', 'ProductController@getShoppingCart')->name('product.cart');
+Route::delete('/cart/delete', 'ProductController@cartDelete')->name('cart.delete');
