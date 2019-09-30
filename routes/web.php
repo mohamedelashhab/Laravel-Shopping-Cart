@@ -13,3 +13,4 @@ Route::post('/add_to_cart/{product}', 'ProductController@addToCart')->name('cart
 Route::get('/cart-detail', 'ProductController@getShoppingCart')->name('product.cart');
 Route::delete('/cart/delete', 'ProductController@cartDelete')->name('cart.delete');
 Route::get('/checkout', 'ProductController@getCheckout')->name('checkout');
+Route::post('/checkout', 'ProductController@postCheckout')->name('post.checkout');

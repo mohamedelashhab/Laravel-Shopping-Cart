@@ -152,6 +152,8 @@
 
 @endsection
 
+
+
 @section('content')
 <main class="page payment-page">
         <section class="payment-form dark">
@@ -162,36 +164,20 @@
 			{{Session::get('error')}}
 			</div>
             </div>
-			<form id="checkout-form" action="{{route('checkout')}}" method="POST">
+			<form id="checkout-form" action="{{route('post.checkout')}}" method="POST">
 				@csrf
               <div class="products">
                 <h3 class="title">Checkout</h3>
               </div>
-              <div class="card-details">
-                <h3 class="title">Credit Card Details</h3>
-                <div class="row">
-                  <div class="form-group col-sm-7">
-                    <label for="card-holder">Card Holder</label>
-                    <input id="card-holder" type="text" class="form-control" placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1">
-                  </div>
-                  <div class="form-group col-sm-5">
-                    <label for="">Expiration Date</label>
-                    <div class="input-group expiration-date">
-                      <input type="text" id="expiration-month" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1">
-                      <span class="date-separator">/</span>
-                      <input type="text" id="expiration-year"  class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1">
-                    </div>
-                  </div>
-                  <div class="form-group col-sm-8">
-                    <label for="card-number">Card Number</label>
-                    <input id="card-number" type="text" class="form-control" placeholder="Card Number" aria-label="Card Holder" aria-describedby="basic-addon1">
-                  </div>
-                  <div class="form-group col-sm-4">
-                    <label for="cvc">CVC</label>
-                    <input id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1">
-                  </div>
+           
+					<div id="card-element">
+						
+					</div>
+					<hr>
+
+                  
                   <div class="form-group col-sm-12">
-                    <button type="button" type="submit" class="btn btn-primary btn-block">Proceed</button>
+                    <button type="submit" class="btn btn-primary btn-block">Proceed</button>
                   </div>
                 </div>
               </div>
