@@ -37,7 +37,7 @@ class ProductController extends Controller
 
     public function getCheckout()
     {
-        return view('shop.chickout');
+        return view('shop.checkout');
     }
 
 

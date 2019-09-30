@@ -157,9 +157,13 @@
         <section class="payment-form dark">
           <div class="container">
             <div class="block-heading">
-              <h2>Payment</h2>
+			  <h2>Payment</h2>
+			  <div id="charge-error" class="alert alert-danger" {{!Session::has('error')?'hidden':''}}>
+			{{Session::get('error')}}
+			</div>
             </div>
-            <form>
+			<form id="checkout-form" action="{{route('checkout')}}" method="POST">
+				@csrf
               <div class="products">
                 <h3 class="title">Checkout</h3>
               </div>
@@ -173,9 +177,9 @@
                   <div class="form-group col-sm-5">
                     <label for="">Expiration Date</label>
                     <div class="input-group expiration-date">
-                      <input type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1">
+                      <input type="text" id="expiration-month" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1">
                       <span class="date-separator">/</span>
-                      <input type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1">
+                      <input type="text" id="expiration-year"  class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1">
                     </div>
                   </div>
                   <div class="form-group col-sm-8">
@@ -187,7 +191,7 @@
                     <input id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1">
                   </div>
                   <div class="form-group col-sm-12">
-                    <button type="button" class="btn btn-primary btn-block">Proceed</button>
+                    <button type="button" type="submit" class="btn btn-primary btn-block">Proceed</button>
                   </div>
                 </div>
               </div>
@@ -195,4 +199,11 @@
           </div>
         </section>
       </main>
+@endsection
+
+@section('script')
+    
+	<script src="https://js.stripe.com/v3/"></script>
+	<script src="{{route('src/javascript/checkout.js')}}"></script>
+
 @endsection
