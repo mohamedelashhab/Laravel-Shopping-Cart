@@ -12,3 +12,4 @@ Route::get('/logout', 'UserController@logout')->name('user.logout');
 Route::post('/add_to_cart/{product}', 'ProductController@addToCart')->name('cart.add');
 Route::get('/cart-detail', 'ProductController@getShoppingCart')->name('product.cart');
 Route::delete('/cart/delete', 'ProductController@cartDelete')->name('cart.delete');
+Route::get('/checkout', 'ProductController@getCheckout')->name('checkout');

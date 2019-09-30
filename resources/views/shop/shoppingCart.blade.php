@@ -11,7 +11,6 @@
     <script>
 
         (function(){
-
             $('.js-remove').on('click', function(){
                 var id = $(this).data('id');
                 var num = $('#num'+''+id).attr('value');
@@ -26,7 +25,6 @@
                     }
                 });
             });
-
         }())
     
     </script>
@@ -79,6 +77,8 @@
             
 
         </div>
+
+        <a href="/checkout"><button class="btn btn-success">Checkout</button></a>
     </div>
 
 @endsection

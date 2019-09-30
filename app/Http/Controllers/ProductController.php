@@ -35,5 +35,10 @@ class ProductController extends Controller
         return true;
     }
 
+    public function getCheckout()
+    {
+        return view('shop.chickout');
+    }
+
 
 }
