@@ -204,6 +204,6 @@
 @section('script')
     
 	<script src="https://js.stripe.com/v3/"></script>
-	<script src="{{route('src/javascript/checkout.js')}}"></script>
+	<script src="{{url('src/javascript/checkout.js')}}"></script>
 
 @endsection

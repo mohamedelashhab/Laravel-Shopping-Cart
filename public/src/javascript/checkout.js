@@ -2,9 +2,9 @@ var stripe = Stripe('pk_test_9vQaJYxw1Q9x01fxZA4QNC6s00zVJq4RfN');
 
 var form = $('#checkout-form');
 
-$form.submit(function(){
+$('form').submit(function(){
     $('#charge-error').addClass('hidden');
-    $form.find('button').prop('disabled', true);
+    $('form').find('button').prop('disabled', true);
     stripe.createToken({
         card_holder: $('#card-holder'),
         expiration_year: $('#expiration-year'),
@@ -24,7 +24,7 @@ function handler(status, response)
         $form.find('button').prop('disabled', false);
     }else{
         var token = response.id;
-        $form.append($('<input type="hidden" name="stripeToken"/>').val(token));
-        $form.get(0).submit();
+        $('form').append($('<input type="hidden" name="stripeToken"/>').val(token));
+        $('form').get(0).submit();
     }
 }
