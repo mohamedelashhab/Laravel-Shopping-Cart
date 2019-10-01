@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Cart;
+use App\Order;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -49,12 +51,18 @@ class ProductController extends Controller
         $token = $request['stripeToken'];
         // dd($request->input('stripeToken'));
         try{
-            \Stripe\Charge::create([
+            $charge = \Stripe\Charge::create([
                 'amount' => $cart->price *100,
                 'currency' => 'usd',
-                'description' => 'Example charge',
+                'description' => 'charged !!',
                 'source' => $token,
-            ]);
+            ])['id'];
+            // dd($charge);
+            $order = new Order();
+            $order->user_id =1;
+            $order->payment_id = $charge;
+            $order->cart = serialize($cart);
+            $order->save();
         } catch (Exception $e)
         {
             return redirect()->route('checkout')->with('error', $e->getMessage());
