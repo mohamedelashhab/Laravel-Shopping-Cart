@@ -15,9 +15,16 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
+        $url = $request->session()->has('oldUrl') ? request()->url() : '/profile';
+        
         // dd($request->all());
-        Auth::attempt(['email' => $request['email'], 'password' => bcrypt($request['password'])]);
-        return redirect('/');
+        if(Auth::attempt(['email' => $request['email'], 'password' => bcrypt($request['password'])])){
+            $request->session()->forget('oldUrl');
+            return redirect($url);
+        }else{
+            return redirect()->route('user.login-form');
+        }
+        
     }
 
     public function getRegister()
@@ -34,17 +41,38 @@ class UserController extends Controller
         ]);
         $request['password'] = bcrypt($request['password']);
         // dd($request->all());
-        User::create(
+       $user = User::create(
             $request->all()
         );
 
-        Auth::attempt(['email' => $request['email'], 'password' => $request['password']]);
-        return redirect('/');
+        if($user){
+            Auth::login($user);
+            $url = $request->session()->has('oldUrl') ? request()->url() : '/profile';
+            $request->session()->forget('oldUrl');
+        }
+        else{
+            
+            return back();
+        }
+
+
+        // $request['password'] = bcrypt($request['password']);
+        // if(Auth::attempt(['email' => $request['email'], 'password' => $request['password']])){
+        //     $url = $request->session()->has('oldUrl') ? request()->url() : '/profile';
+        //     $request->session()->forget('oldUrl');
+        //     return redirect($url);
+        // }
+        
 
     }
     public function logout()
     {
         Auth::logout();
         return redirect('/login');
+    }
+
+    public function profile()
+    {
+        return view('user.profile');
     }
 }

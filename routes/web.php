@@ -14,3 +14,4 @@ Route::get('/cart-detail', 'ProductController@getShoppingCart')->name('product.c
 Route::delete('/cart/delete', 'ProductController@cartDelete')->name('cart.delete');
 Route::get('/checkout', 'ProductController@getCheckout')->name('checkout');
 Route::post('/checkout', 'ProductController@postCheckout')->name('post.checkout');
+Route::get('/profile', 'UserController@profile')->name('profile');
